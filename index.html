@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MilGrab - Grabados</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100;400;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="/img/icono.png" type="image/x-icon">
+
+</head>
+<body>
+    <header>
+        <div class="logo"> 
+            <a href="#top">
+                <img src="img/logotornillo1.png" alt="Logo" width="120px">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#nosotrosnav">Nosotros</a></li>
+                <li><a href="#serviciosnav">Servicios</a></li>
+                <li><a href="#contactonav">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" >
+        <div class="hero-content">
+            <img src="img/TituloTornillo1.png" alt="Titulo" width="400px" class="imgTitulo">
+        </div>
+        <p id="nosotrosnav"></p>
+    </section>
+
+    <section class="about container" id="nosotros">
+        <div class="about-image">
+            <img src="img/nosotrosgif.gif" alt="Proceso de Grabado">
+        </div>
+        <div class="about-text">
+            <p class="negrita">Nuestro proceso comienza con una idea.</p>
+            <p>
+                 Ya sea que quieras personalizar un regalo especial o crear una placa única para tu negocio, estamos aquí para ayudarte en cada paso. Trabajamos con maquinaria de última generación que nos permite grabar con precisión en una amplia variedad de materiales. Desde la concepción del diseño hasta la entrega final, garantizamos calidad y satisfacción en cada proyecto.
+            </p>
+        </div>
+    </section>
+
+    <section class="services" id="serviciosnav" >
+        <h3>Nuestros Servicios</h3>
+        <p>Transformamos tus ideas en grabados únicos y personalizados, con precisión y calidad en cada detalle.</p>
+        
+        
+        <div class="service-cards">
+            <div class="service-card">
+                <h4>Matrices para plastisol</h4>
+                <img src="img/serv1.jpg" alt="Plastisol">
+                <p class="flecha">↓</p>
+                <img src="img/serv2.jpg" alt="Plastisol">
+                
+                
+            </div>
+            <div class="service-card">
+                <h4>Matrices para gofrado</h4>
+                <img src="img/serv5.jpg" alt="Gofrado">
+                <p class="flecha">↓</p>
+                <img src="img/serv7.jpg" alt="Gofrado">
+                
+            </div>
+            <div class="service-card">
+                <h4>Matrices para inyección</h4>
+                <img src="img/serv3.jpg" alt="Inyección">
+                <p class="flecha">↓</p>
+                <img src="img/serv4.jpg" alt="Inyección">
+                
+                
+            </div>
+        </div>
+            
+        
+    </section>
+    <p id="contactonav"></p>
+    <section id="contacto" class="container">
+        <div>
+            <h1>Contacto</h1>
+            <p>¿Tienes una idea en mente o necesitas más información sobre nuestros servicios?<br>Estamos aquí para ayudarte. Llena el formulario a continuación.</p>
+        </div>
+
+        <div class="formulario-contacto">
+            <form id="contactForm">
+                <label for="nombre">Nombre y apellido</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre y apellido" required>
+
+                <label for="telefono">Teléfono</label>
+                <input type="text" id="telefono" name="telefono" placeholder="Teléfono" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+
+                <label for="Asunto">Asunto</label>
+                <input id="asunto" name="asunto" placeholder="Asunto"></input required>
+
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" placeholder="Mensaje"></textarea required>
+
+                <button type="submit">Enviar</button>
+                <div id="respuesta"></div> 
+            </form>
+
+            <div class="imagen-contacto">
+                <img src="/img/contactogif.gif" alt="Imagen de contacto">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>También podes comunicarte con nosotros por los siguiente medios</p>
+        <div class="footer-contacto">
+            <a href="mailto:milgrab@milgrab.com.ar">
+                <img src="/img/sobreMail.png" alt="Email"> milgrab@milgrab.com.ar
+            </a>
+            <a href="https://www.instagram.com/grabadosmilgrab/" target="_blank">
+                <img src="/img/instagram.png" alt="Instagram"> @grabadosmilgrab
+            </a>
+            <a href="tel:+541133509666">
+                <img src="/img/telefono.png" alt="Teléfono"> 11 3350-9666
+            </a>
+        </div>
+        <p>Copyright &copy; 2024 Sofia Leonardelli</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/enviar.php', true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('respuesta').innerHTML = xhr.responseText;
+
+                    if (xhr.responseText.includes("Mensaje enviado correctamente.")) {
+                        document.getElementById('contactForm').reset();
+                    }
+                } else {
+                    document.getElementById('respuesta').innerHTML = 'Ocurrió un error al enviar el mensaje.';
+                }
+            };
+
+            xhr.send(formData);
+        });
+    </script>
+</body>
+</html>
